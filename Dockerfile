@@ -3,7 +3,7 @@
 # Use base golang image from Docker Hub
 FROM golang:1.16 as build
 
-WORKDIR /hello-world
+WORKDIR /cloud-run
 
 # Install dependencies in go.mod and go.sum
 COPY go.mod go.sum ./
@@ -26,7 +26,7 @@ FROM gcr.io/distroless/base
 # See https://golang.org/pkg/runtime/
 ENV GOTRACEBACK=single
 
-WORKDIR /hello-world
+WORKDIR /cloud-run
 COPY --from=build /app .
 COPY template ./template
 ENTRYPOINT ["./app"]
